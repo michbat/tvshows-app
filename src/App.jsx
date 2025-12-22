@@ -9,24 +9,40 @@ import { BACKDROP_BASE_URL } from "./config";
 
 export const App = () => {
   const [currentTVShow, setCurrentTVShow] = useState();
+  const [recommendationsList, setRecommendationsList] = useState([]);
 
+  // Chargement initial des séries populaires
   useEffect(() => {
-    const getPopulars = async () => {
+    const fetchPopulars = async () => {
       const popularTVShowList = await TVShowAPI.fetchPopulars();
-
       if (popularTVShowList.length > 0) {
         setCurrentTVShow(popularTVShowList[0]);
       }
     };
-
-    getPopulars();
+    fetchPopulars();
   }, []);
+
+  // Chargement des recommandations quand la série courante change
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      if (currentTVShow) {
+        const getRecommendationsResp = await TVShowAPI.fetchRecommendations(
+          currentTVShow.id
+        );
+        if (getRecommendationsResp.length > 0) {
+          setRecommendationsList(getRecommendationsResp.slice(0, 10));
+        }
+      }
+    };
+    fetchRecommendations();
+  }, [currentTVShow]);
+
+  console.log(recommendationsList);
 
   const handleOnItemClick = (tvShow) => {
     console.log("I have been clicked", tvShow);
   };
 
-  console.log(currentTVShow);
 
   return (
     <>
