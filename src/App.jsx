@@ -3,6 +3,8 @@ import "./App.css";
 import { TVShowAPI } from "./api/tv-show";
 import { BACKDROP_BASE_URL } from "./config";
 import { TVShowDetail } from "./components/TVShowDetail/TVShowDetail";
+import { Logo } from "./components/Logo/Logo";
+import icon from "./assets/images/logo.png";
 
 export const App = () => {
   const [currentTVShow, setCurrentTVShow] = useState();
@@ -19,8 +21,6 @@ export const App = () => {
     getPopulars();
   }, []);
 
-  // console.log(currentTVShow);
-
   return (
     <>
       <div
@@ -35,8 +35,7 @@ export const App = () => {
         <div className="header">
           <div className="row">
             <div className="col-4">
-              <div>LOGO</div>
-              <div>Subtitle</div>
+              <Logo img={icon} title="Watowatch" subtitle="Find a show you may like" />
             </div>
             <div className="col-md-12 col-lg-4">
               <input style={{ width: "100%" }} type="text" />
