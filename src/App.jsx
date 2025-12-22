@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { TVShowAPI } from "./api/tv-show";
 import { BACKDROP_BASE_URL } from "./config";
-import { TVShowDetail } from "./components/TVShowDetail";
+import { TVShowDetail } from "./components/TVShowDetail/TVShowDetail";
 
 export const App = () => {
   const [currentTVShow, setCurrentTVShow] = useState();
@@ -19,7 +19,7 @@ export const App = () => {
     getPopulars();
   }, []);
 
-  console.log(currentTVShow);
+  // console.log(currentTVShow);
 
   return (
     <>
