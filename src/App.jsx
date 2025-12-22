@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { TVShowAPI } from "./api/tv-show";
-import { BACKDROP_BASE_URL } from "./config";
-import { TVShowDetail } from "./components/TVShowDetail/TVShowDetail";
-import { Logo } from "./components/Logo/Logo";
 import icon from "./assets/images/logo.png";
+import { Logo } from "./components/Logo/Logo";
+import { TVShowDetail } from "./components/TVShowDetail/TVShowDetail";
+import { TVShowListItem } from "./components/TVShowListItem/TVShowListItem";
+import { BACKDROP_BASE_URL } from "./config";
 
 export const App = () => {
   const [currentTVShow, setCurrentTVShow] = useState();
@@ -21,6 +22,12 @@ export const App = () => {
     getPopulars();
   }, []);
 
+  const handleOnItemClick = (tvShow) => {
+    console.log("I have been clicked", tvShow);
+  };
+
+  console.log(currentTVShow);
+
   return (
     <>
       <div
@@ -35,7 +42,11 @@ export const App = () => {
         <div className="header">
           <div className="row">
             <div className="col-4">
-              <Logo img={icon} title="Watowatch" subtitle="Find a show you may like" />
+              <Logo
+                img={icon}
+                title="Watowatch"
+                subtitle="Find a show you may like"
+              />
             </div>
             <div className="col-md-12 col-lg-4">
               <input style={{ width: "100%" }} type="text" />
@@ -45,7 +56,14 @@ export const App = () => {
         <div className="tv_show_details">
           {currentTVShow && <TVShowDetail tvShow={currentTVShow} />}
         </div>
-        <div className="recommended_tv_shows">Recommended</div>
+        <div className="recommended_tv_shows">
+          {currentTVShow && (
+            <TVShowListItem
+              tvShow={currentTVShow}
+              onClickItem={handleOnItemClick}
+            />
+          )}
+        </div>
       </div>
     </>
   );
