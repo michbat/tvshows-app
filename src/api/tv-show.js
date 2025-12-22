@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 import { FAKE_POPULARS, FAKE_RECOMMENDATIONS } from "./fake_data";
 import { BASE_URL, API_KEY_PARAM } from "../config";
 
@@ -6,19 +6,14 @@ import { BASE_URL, API_KEY_PARAM } from "../config";
 
 export class TVShowAPI {
     static async fetchPopulars() {
-        // const response = await axios.get(`${BASE_URL}tv/popular${API_KEY_PARAM}`);
-        // console.log(response.data.results);
-        // return response.data.results;
-        // console.log(FAKE_POPULARS)
-        return FAKE_POPULARS;
+        const response = await axios.get(`${BASE_URL}tv/popular${API_KEY_PARAM}`);
+        return response.data.results;
+        // return FAKE_POPULARS;
     }
     static async fetchRecommendations(tvShowId) {
-        const i = tvShowId;
-        console.log(i)
-        // const response = await axios.get(`${BASE_URL}tv/${tvShowId}/recommendations${API_KEY_PARAM}`);
-        // console.log(response.data.results);
-        // return response.data.results;
-        return FAKE_RECOMMENDATIONS;
+        const response = await axios.get(`${BASE_URL}tv/${tvShowId}/recommendations${API_KEY_PARAM}`);
+        return response.data.results;
+        // return FAKE_RECOMMENDATIONS;
 
     }
 }

@@ -4,7 +4,6 @@ import { TVShowAPI } from "./api/tv-show";
 import icon from "./assets/images/logo.png";
 import { Logo } from "./components/Logo/Logo";
 import { TVShowDetail } from "./components/TVShowDetail/TVShowDetail";
-import { TVShowListItem } from "./components/TVShowListItem/TVShowListItem";
 import { TVShowList } from "./components/TVShowList/TVShowList";
 import { BACKDROP_BASE_URL } from "./config";
 
@@ -38,10 +37,9 @@ export const App = () => {
     fetchRecommendations();
   }, [currentTVShow]);
 
-  console.log(recommendationsList);
 
-  const handleOnItemClick = (tvShow) => {
-    console.log("I have been clicked", tvShow);
+  const handleOnItemClickToUpdate = (tvShow) => {
+    setCurrentTVShow(tvShow);
   };
 
   return (
@@ -75,7 +73,7 @@ export const App = () => {
         <div className="recommended_tv_shows">
           {recommendationsList.length > 0 && (
             <TVShowList
-              handleOnItemClick={handleOnItemClick}
+              handleOnItemClick={handleOnItemClickToUpdate}
               tvShowList={recommendationsList}
             />
           )}
