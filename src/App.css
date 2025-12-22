@@ -1,25 +1,24 @@
-body {
+/* body {
   font-family: "Roboto", sans-serif;
-  font-weight: 400; /* ou 100, 300, 500, 700, 900 */
-  font-style: normal; /* ou italic */
-}
+  font-weight: 400; 
+  font-style: normal; 
+} */
 
 .main_container {
   padding: 25px;
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: #333;
+  color: white;
 }
 
 .header {
   flex: 2;
-  background-color: blue;
 }
 .tv_show_details {
   flex: 4;
-  background-color: red;
 }
 .recommended_tv_shows {
   flex: 2;
-  background-color: green;
 }
