@@ -4,25 +4,20 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-  
 }
 
 body {
   font-family: "Maximum Impact", sans-serif;
 }
 
-
-
-
-/* Mouse out of scrollbar */
 ::-webkit-scrollbar {
-  height: 14px;
-  width: 4px;
   background: transparent;
+  height: 8px;
+  width: 8px;
 }
 
 /* Mouse out on horizontal scrollbar */
 ::-webkit-scrollbar-thumb:horizontal {
-  background: rgba(0, 0, 0, 0.61);
+  background: rgba(114, 100, 100, 0.4);
   border-radius: 10px;
 }

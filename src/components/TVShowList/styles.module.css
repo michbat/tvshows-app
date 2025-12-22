@@ -1,0 +1,30 @@
+.title {
+  font-family: roboto, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  position: absolute;
+}
+
+.list {
+  display: flex;
+  width: calc(100vw - 25px);
+  overflow-x: auto;
+  padding-bottom: 30px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.list:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+}
+
+.list:hover::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.tv_show_item {
+  margin-right: 20px;
+}

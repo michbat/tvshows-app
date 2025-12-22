@@ -5,6 +5,7 @@ import icon from "./assets/images/logo.png";
 import { Logo } from "./components/Logo/Logo";
 import { TVShowDetail } from "./components/TVShowDetail/TVShowDetail";
 import { TVShowListItem } from "./components/TVShowListItem/TVShowListItem";
+import { TVShowList } from "./components/TVShowList/TVShowList";
 import { BACKDROP_BASE_URL } from "./config";
 
 export const App = () => {
@@ -43,7 +44,6 @@ export const App = () => {
     console.log("I have been clicked", tvShow);
   };
 
-
   return (
     <>
       <div
@@ -73,10 +73,10 @@ export const App = () => {
           {currentTVShow && <TVShowDetail tvShow={currentTVShow} />}
         </div>
         <div className="recommended_tv_shows">
-          {currentTVShow && (
-            <TVShowListItem
-              tvShow={currentTVShow}
-              onClickItem={handleOnItemClick}
+          {recommendationsList.length > 0 && (
+            <TVShowList
+              handleOnItemClick={handleOnItemClick}
+              tvShowList={recommendationsList}
             />
           )}
         </div>
