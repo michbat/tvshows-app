@@ -1,6 +1,6 @@
 import './App.css'
 
-function App() {
+export const App = ()=> {
   
 
   return (
@@ -10,4 +10,3 @@ function App() {
   )
 }
 
-export default App
