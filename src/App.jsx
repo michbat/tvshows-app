@@ -38,6 +38,15 @@ export const App = () => {
     fetchRecommendations();
   }, [currentTVShow]);
 
+  //
+
+  const fetchByTitle = async (title) => {
+    const searchResponse = await TVShowAPI.fetchByTitle(title);
+
+    if (searchResponse.length > 0) {
+      setCurrentTVShow(searchResponse[0]);
+    }
+  };
 
   const handleOnItemClickToUpdate = (tvShow) => {
     setCurrentTVShow(tvShow);
@@ -64,7 +73,7 @@ export const App = () => {
               />
             </div>
             <div className="col-md-12 col-lg-4">
-              <SearchBar/>
+              <SearchBar onSubmitSearch={fetchByTitle} />
             </div>
           </div>
         </div>
