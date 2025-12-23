@@ -11,6 +11,7 @@ import { SearchBar } from "./components/SearchBar/SearchBar";
 export const App = () => {
   const [currentTVShow, setCurrentTVShow] = useState();
   const [recommendationsList, setRecommendationsList] = useState([]);
+  const [error, setError] = useState(null);
 
   // Chargement initial des séries populaires
   useEffect(() => {
@@ -18,6 +19,9 @@ export const App = () => {
       const popularTVShowList = await TVShowAPI.fetchPopulars();
       if (popularTVShowList.length > 0) {
         setCurrentTVShow(popularTVShowList[0]);
+        setError(null);
+      } else {
+        setError("Erreur de chargement.Impossible de charger les séries populaires");
       }
     };
     fetchPopulars();
@@ -32,6 +36,8 @@ export const App = () => {
         );
         if (getRecommendationsResp.length > 0) {
           setRecommendationsList(getRecommendationsResp.slice(0, 10));
+        } else {
+          setRecommendationsList([]);
         }
       }
     };
@@ -45,6 +51,9 @@ export const App = () => {
 
     if (searchResponse.length > 0) {
       setCurrentTVShow(searchResponse[0]);
+      setError(null);
+    } else {
+      setError(`Erreur de chargement.Aucune série trouvée pour "${title}"`);
     }
   };
 
@@ -77,6 +86,11 @@ export const App = () => {
             </div>
           </div>
         </div>
+        {error && (
+          <div className="alert alert-danger text-center mt-3" role="alert">
+            {error}
+          </div>
+        )}
         <div className="tv_show_details">
           {currentTVShow && <TVShowDetail tvShow={currentTVShow} />}
         </div>
