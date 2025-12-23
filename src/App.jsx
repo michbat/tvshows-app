@@ -1,16 +1,28 @@
+/**
+ * App.jsx - Composant principal de l'application
+ *
+ * Gère l'affichage d'une série TV avec ses détails et recommandations.
+ * Permet la recherche de séries via la barre de recherche.
+ */
+
 import { useEffect, useState } from "react";
 import "./App.css";
 import { TVShowAPI } from "./api/tv-show";
 import icon from "./assets/images/logo.png";
 import { Logo } from "./components/Logo/Logo";
+import { SearchBar } from "./components/SearchBar/SearchBar";
 import { TVShowDetail } from "./components/TVShowDetail/TVShowDetail";
 import { TVShowList } from "./components/TVShowList/TVShowList";
 import { BACKDROP_BASE_URL } from "./config";
-import { SearchBar } from "./components/SearchBar/SearchBar";
 
 export const App = () => {
+  // State pour stocker la série TV actuellement affichée
   const [currentTVShow, setCurrentTVShow] = useState();
+
+  // State pour stocker la liste des séries recommandées (max 10)
   const [recommendationsList, setRecommendationsList] = useState([]);
+
+  // State pour gérer les messages d'erreur à afficher à l'utilisateur
   const [error, setError] = useState(null);
 
   // Chargement initial des séries populaires
@@ -21,7 +33,9 @@ export const App = () => {
         setCurrentTVShow(popularTVShowList[0]);
         setError(null);
       } else {
-        setError("Erreur de chargement.Impossible de charger les séries populaires");
+        setError(
+          "Erreur de chargement.Impossible de charger les séries populaires"
+        );
       }
     };
     fetchPopulars();
@@ -44,19 +58,28 @@ export const App = () => {
     fetchRecommendations();
   }, [currentTVShow]);
 
-  //
-
+  /**
+   * Recherche une série TV par son titre
+   * @param {string} title - Le titre de la série à rechercher
+   */
   const fetchByTitle = async (title) => {
     const searchResponse = await TVShowAPI.fetchByTitle(title);
 
     if (searchResponse.length > 0) {
+      // Affiche la première série trouvée
       setCurrentTVShow(searchResponse[0]);
       setError(null);
     } else {
+      // Affiche un message d'erreur si aucune série n'est trouvée
       setError(`Erreur de chargement.Aucune série trouvée pour "${title}"`);
     }
   };
 
+  /**
+   * Gère le clic sur un item de la liste de recommandations
+   * Met à jour la série actuellement affichée
+   * @param {Object} tvShow - L'objet série TV sélectionné
+   */
   const handleOnItemClickToUpdate = (tvShow) => {
     setCurrentTVShow(tvShow);
   };
